@@ -2,13 +2,15 @@ package task.datalenttasks.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import task.datalenttasks.dto.ArticleCreateRequestDto;
-import task.datalenttasks.dto.ArticleResponseDto;
-import task.datalenttasks.dto.ArticleUpdateRequestDto;
+import task.datalenttasks.dto.request.ArticleCreateRequestDto;
+import task.datalenttasks.dto.response.ArticleResponseDto;
+import task.datalenttasks.dto.request.ArticleUpdateRequestDto;
 import task.datalenttasks.service.ArticleServiceImpl;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -17,7 +19,7 @@ public class ArticleController {
     private final ArticleServiceImpl articleService;
 
     @PostMapping("/create")
-    public void createArticle(@RequestBody ArticleCreateRequestDto articleCreateRequestDto) {
+    public void createArticle(@Valid @RequestBody ArticleCreateRequestDto articleCreateRequestDto) {
         articleService.createArticle (articleCreateRequestDto);
     }
 
@@ -37,7 +39,7 @@ public class ArticleController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id){
+    public void deleteById(@PathVariable Long id) {
         articleService.deleteArticle (id);
     }
 

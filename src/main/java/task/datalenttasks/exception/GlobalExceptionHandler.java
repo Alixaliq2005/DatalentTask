@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(NotFoundArticleException.class)
-    public ResponseEntity<String> handleNotFoundArticleException(NotFoundArticleException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<String> handleNotFoundArticleException(NotFoundArticleException e) {
+        return ResponseEntity.status (HttpStatus.NOT_FOUND).body (e.getMessage ());
     }
 }
